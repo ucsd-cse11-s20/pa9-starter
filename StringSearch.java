@@ -116,6 +116,7 @@ class StringSearch {
 		String[] lines = FileHelper.getLines(filePath);		
 
 		if (args.length == 1) {
+			// No query provided. Print all the lines.
 			for (String line: lines) {
 				System.out.println(line);
 			}
@@ -124,6 +125,7 @@ class StringSearch {
 			Query query = parseQuery(args[1]);
 
 			if (query != null) {
+				// A single valid query was provided. Print lines matching that query.
 				for (String line : lines) {
 					if (query.matches(line)) {
 						System.out.println(line);
@@ -133,6 +135,10 @@ class StringSearch {
 		}
 	}
 
+	/*
+	 * This method accepts a String parameter representing a single Query,
+	 * and returns a matching Query object.
+	 */
 	static Query parseQuery(String arg) {
 		Query rs;
 
@@ -168,6 +174,11 @@ class StringSearch {
 		return rs;
 	}
 
+	/*
+	 * This method accepts a String parameter with the following format: 
+	 *     "query='argument'"
+	 * and returns "argument" as a String.
+	 */
 	static String getString(String str) {
 		String rs;
 		String[] queryAndArg = str.split("=");
@@ -184,6 +195,11 @@ class StringSearch {
 		return rs;
 	}
 
+	/*
+	 * This method accepts a String parameter with the following format:
+	 *     "query=argument"
+	 * and returns argument as an integer.
+	 */
 	static int getInt(String str) {		
 		int rs;
 		String[] queryAndArg = str.split("=");
