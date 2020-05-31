@@ -122,7 +122,7 @@ class StringSearch {
 			}
 		}
 		else if (args.length == 2) {		
-			Query query = parseQuery(args[1]);
+			Query query = readQuery(args[1]);
 
 			if (query != null) {
 				// A single valid query was provided. Print lines matching that query.
@@ -139,7 +139,7 @@ class StringSearch {
 	 * This method accepts a String parameter representing a single Query,
 	 * and returns a matching Query object.
 	 */
-	static Query parseQuery(String arg) {
+	static Query readQuery(String arg) {
 		Query rs;
 
 		if (arg.startsWith("length")) {
@@ -163,7 +163,7 @@ class StringSearch {
 		else if (arg.startsWith("not(")) {
 			int startIndex = "not(".length();
 			int endIndex = arg.length() - 1;
-			Query q = parseQuery(arg.substring(startIndex, endIndex));
+			Query q = readQuery(arg.substring(startIndex, endIndex));
 			rs = new NotQuery(q);
 		}
 		else {
